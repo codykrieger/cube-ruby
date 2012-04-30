@@ -42,6 +42,12 @@ event_id = 42
 $cube.send "request", DateTime.now, event_id, duration_ms: 234
 ```
 
+## Testing
+
+Run the specs with `rake`.
+
+To include real UDP socket testing in the specs, run `LIVE=true rake`.
+
 ## Contributing
 
 1. Fork it
