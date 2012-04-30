@@ -3,6 +3,7 @@ require 'date'
 require 'json'
 
 # a few things yanked verbatim from here: https://github.com/github/statsd-ruby/blob/master/spec/statsd_spec.rb
+# license: https://github.com/github/statsd-ruby/blob/master/LICENSE.txt
 
 describe Cube::Client do
   before do

@@ -17,7 +17,7 @@ module Cube
 
     class << self
       # Set to any logger instance that responds to #debug and #error (like the
-      # Rails or stdlib logger) to enable stat logging.
+      # Rails or stdlib logger) to enable metric logging.
       attr_accessor :logger
     end
 
@@ -26,7 +26,7 @@ module Cube
       @host, @port = host, port
     end
 
-    # The primary endpoint for sending stats to Cube - call like this:
+    # The primary endpoint for sending metrics to Cube - call like this:
     #
     # ```ruby
     # cube = Cube::Client.new
