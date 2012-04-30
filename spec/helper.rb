@@ -1,5 +1,8 @@
 require 'minitest/autorun'
 
+# yanked almost verbatim from here: https://github.com/github/statsd-ruby/blob/master/spec/helper.rb
+# license: https://github.com/github/statsd-ruby/blob/master/LICENSE.txt
+
 $:.unshift File.dirname(__FILE__)
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 

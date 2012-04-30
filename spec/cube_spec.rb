@@ -2,6 +2,8 @@ require 'helper'
 require 'date'
 require 'json'
 
+# a few things yanked verbatim from here: https://github.com/github/statsd-ruby/blob/master/spec/statsd_spec.rb
+
 describe Cube::Client do
   before do
     @cube = Cube::Client.new "cube.example.org", 1185
