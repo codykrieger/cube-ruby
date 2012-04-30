@@ -3,6 +3,9 @@
 A Cube client for Ruby (https://square.github.com/cube). Heavily based on
 [this statsd ruby client](https://github.com/github/statsd-ruby).
 
+MIT licensed. See https://github.com/codykrieger/cube-ruby/blob/master/LICENSE
+for more details.
+
 ## Installation
 
 Add this line to your application's Gemfile:
