@@ -34,7 +34,6 @@ module Cube
     # cube.send "request", DateTime.now, duration_ms: 234
     # ```
     def send(type, *args)
-      default_time = DateTime.now
       time = nil
       id = nil
       data = nil
@@ -52,7 +51,7 @@ module Cube
       end
 
       # Send off our parsed arguments to be further massaged and socketized.
-      actual_send type, (time || default_time), id, data
+      actual_send type, time, id, data
     end
 
     private
@@ -67,9 +66,9 @@ module Cube
 
       # Start constructing the message to be sent to Cube over UDP.
       message = {
-        type: "#{prefix}#{type}",
-        time: time.iso8601
+        type: "#{prefix}#{type}"
       }
+      message[:time] = time.iso8601 unless time.nil?
       message[:id] = id unless id.nil?
       message[:data] = data unless data.nil?
 

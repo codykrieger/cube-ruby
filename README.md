@@ -1,16 +1,24 @@
 # cube-ruby
 
 A Cube client for Ruby (http://square.github.com/cube). Heavily based on
-[this statsd ruby client](https://github.com/github/statsd-ruby).
+[this statsd ruby client][sdc].
 
-MIT licensed. See https://github.com/codykrieger/cube-ruby/blob/master/LICENSE
+MIT licensed. See [the LICENSE file][license] for more details.
 for more details.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Since Cube is under constant development, it's best if you specify a particular
+version of cube-ruby in your `Gemfile`. Here's a compatibility table:
 
-    gem 'cube-ruby', require: "cube"
+    Cube   | cube-ruby
+    --------------------
+    0.2.0  | 0.0.1
+    0.2.1  | 0.0.2 (master)
+
+Add this line to your application's `Gemfile`:
+
+    gem 'cube-ruby', '0.0.2', require: "cube"
 
 And then execute:
 
@@ -50,6 +58,9 @@ event_id = 42
 $cube.send "request", DateTime.now, event_id, duration_ms: 234
 ```
 
+Yes, the method is called `send`. You can still call `Object#send` on
+`Cube::Client` objects by using the `__send__` method, [per the Ruby docs][rd].
+
 ## Testing
 
 Run the specs with `rake`.
@@ -63,3 +74,8 @@ To include real UDP socket testing in the specs, run `LIVE=true rake`.
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[sdc]: https://github.com/github/statsd-ruby
+[license]: https://github.com/codykrieger/cube-ruby/blob/master/LICENSE
+[rd]: http://ruby-doc.org/core-1.9.3/Object.html#method-i-send
+

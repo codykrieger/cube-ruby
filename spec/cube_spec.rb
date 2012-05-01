@@ -32,16 +32,38 @@ describe Cube::Client do
   describe "#send" do
     it "should format the message according to the Cube spec" do
       type = "request"
-      time = DateTime.now
-      data = { duration_ms: 234 }
-      @cube.send type, time, data
+      @cube.send type
       recv = JSON.parse @cube.socket.recv.first
       recv["type"].must_equal "request"
-      recv["time"].must_equal time.iso8601
-      recv["data"].must_equal({ "duration_ms" => 234 })
+    end
+
+    describe "with a time" do
+      it "should format the message according to the Cube spec" do
+        type = "request"
+        time = DateTime.now
+        @cube.send type, time
+        recv = JSON.parse @cube.socket.recv.first
+        recv["type"].must_equal "request"
+        recv["time"].must_equal time.iso8601
+      end
     end
 
     describe "with an id" do
+      it "should format the message according to the Cube spec" do
+        type = "request"
+        time = DateTime.now
+        id = 42
+        data = { duration_ms: 234 }
+        @cube.send type, time, id, data
+        recv = JSON.parse @cube.socket.recv.first
+        recv["type"].must_equal "request"
+        recv["time"].must_equal time.iso8601
+        recv["id"].must_equal 42
+        recv["data"].must_equal({ "duration_ms" => 234 })
+      end
+    end
+
+    describe "with data" do
       it "should format the message according to the Cube spec" do
         type = "request"
         time = DateTime.now
