@@ -53,7 +53,7 @@ $cube = Cube::Client.new 'cube.example.org', 2280
 $cube.send "foo"
 
 # send a new event to cube that looks like this:
-# { type: "request", time: [now], data: { value: "somevalue" } }
+# { type: "request", data: { value: "somevalue" } }
 $cube.send "request", value: "somevalue"
 
 # optionally specify a specific date/time (two days ago)

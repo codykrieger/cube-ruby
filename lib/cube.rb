@@ -22,17 +22,18 @@ module Cube
     end
 
     # Set 'er up with a host and port, defaults to `localhost:1180`.
+    #
+    # @param [String] The hostname to send metrics to.
+    # @param [Integer] The UDP port to send metrics to.
     def initialize(host="localhost", port=1180)
       @host, @port = host, port
     end
 
-    # The primary endpoint for sending metrics to Cube - call like this:
+    # The primary endpoint for sending metrics to Cube.
     #
-    # ```ruby
-    # cube = Cube::Client.new
-    # cube.send "request", value: "somevalue"
-    # cube.send "request", DateTime.now, duration_ms: 234
-    # ```
+    # @param [String] The desired name of the new Cube event.
+    # @param [Array] A splat that takes an optional DateTime, an event id
+    #   (typically an integer, but can be any object), and a Hash of data.
     def send(type, *args)
       time = nil
       id = nil
@@ -58,6 +59,12 @@ module Cube
 
     # Actually send the given data to a socket, and potentially log it along
     # the way.
+    #
+    # @param [String] The desired name of the new Cube event.
+    # @param [DateTime] Optional. A specific time when the Cube event occurred.
+    # @param [Object] Optional. Typically an integer, but can be any object.
+    # @param [Hash] Optional. Anything in this hash will be stored in the
+    #   `data` subdocument of the Cube event.
     def actual_send(type, time, id, data)
       # Namespace support!
       prefix = "#{@namespace}_" unless @namespace.nil?
