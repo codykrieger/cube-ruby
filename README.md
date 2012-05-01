@@ -9,7 +9,10 @@ for more details.
 ## Installation
 
 Since Cube is under constant development, it's best if you specify a particular
-version of cube-ruby in your `Gemfile`. Here's a compatibility table:
+version of cube-ruby in your `Gemfile`. That way, you can ensure your Ruby
+application and your Cube instance will be compatible with each other.
+
+Here's a version compatibility table:
 
     Cube   | cube-ruby
     --------------------
@@ -18,6 +21,9 @@ version of cube-ruby in your `Gemfile`. Here's a compatibility table:
 
 Add this line to your application's `Gemfile`:
 
+    gem 'cube-ruby', require: "cube"
+
+    # or specify a particular version:
     gem 'cube-ruby', '0.0.2', require: "cube"
 
 And then execute:
