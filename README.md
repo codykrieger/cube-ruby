@@ -35,6 +35,9 @@ $cube = Cube::Client.new 'cube.example.org', 2280
 ### Send Cube some metrics!
 
 ```ruby
+# send a new "foo" event to cube
+$cube.send "foo"
+
 # send a new event to cube that looks like this:
 # { type: "request", time: [now], data: { value: "somevalue" } }
 $cube.send "request", value: "somevalue"
