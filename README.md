@@ -17,7 +17,7 @@ Here's a version compatibility table:
     Cube   | cube-ruby
     --------------------
     0.2.0  | 0.0.1
-    0.2.1  | 0.0.2 (master)
+    0.2.1+ | 0.0.2 (master)
 
 Add this line to your application's `Gemfile`:
 
