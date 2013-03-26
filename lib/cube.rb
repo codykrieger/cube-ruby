@@ -42,13 +42,14 @@ module Cube
       until args.empty?
         arg = args.shift
 
-        if arg.is_a? DateTime
-          time ||= arg
-        elsif arg.is_a? Hash
-          data ||= arg
-        else
-          id ||= arg
-        end
+        case arg
+          when DateTime, Time
+            time ||= arg
+          when Hash
+            data ||= arg
+          else
+            id ||= arg
+          end
       end
 
       # Send off our parsed arguments to be further massaged and socketized.

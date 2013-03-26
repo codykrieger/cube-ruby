@@ -1,5 +1,6 @@
 require 'helper'
 require 'date'
+require 'time'
 require 'json'
 
 # a few things yanked verbatim from here: https://github.com/github/statsd-ruby/blob/master/spec/statsd_spec.rb
@@ -37,7 +38,7 @@ describe Cube::Client do
       recv["type"].must_equal "request"
     end
 
-    describe "with a time" do
+    describe "with a DateTime" do
       it "should format the message according to the Cube spec" do
         type = "request"
         time = DateTime.now
@@ -52,6 +53,21 @@ describe Cube::Client do
       it "should format the message according to the Cube spec" do
         type = "request"
         time = DateTime.now
+        id = 42
+        data = { duration_ms: 234 }
+        @cube.send type, time, id, data
+        recv = JSON.parse @cube.socket.recv.first
+        recv["type"].must_equal "request"
+        recv["time"].must_equal time.iso8601
+        recv["id"].must_equal 42
+        recv["data"].must_equal({ "duration_ms" => 234 })
+      end
+    end
+
+    describe "with Time" do
+      it "should format the message according to the Cube spec" do
+        type = "request"
+        time = Time.now
         id = 42
         data = { duration_ms: 234 }
         @cube.send type, time, id, data
